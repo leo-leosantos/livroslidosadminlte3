@@ -42,4 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'id' => 'string',
     ];
+
+    public function editora()
+    {
+        return $this->hasMany(User::class);
+    }
 }

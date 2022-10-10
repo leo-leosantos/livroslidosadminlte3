@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\{
+    EditoraController,
+    AuthorController
+};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +19,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::prefix('admin')
+    ->middleware(['auth'])
+    ->group(function () {
+
+        // Editora
+        Route::resource('/editora', EditoraController::class);
+
+    // Author
+
+        Route::resource('/author', AuthorController::class);
+
+    });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
