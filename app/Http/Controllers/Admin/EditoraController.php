@@ -29,7 +29,7 @@ class EditoraController extends Controller
     {
 
 
-        $editoras =  $this->editora->with('user')->paginate();
+        $editoras =  $this->editora->with('user')->get();
 
 
 
@@ -138,7 +138,7 @@ class EditoraController extends Controller
         $this->editora->update($data);
 
         return redirect()->route('editora.index')->with('success', 'Nova Editora Atualizada com sucesso');
-       
+
     }
 
     /**
@@ -149,7 +149,7 @@ class EditoraController extends Controller
      */
     public function destroy($id)
     {
-        
+
         $editora = $this->editora->findOrfail($id)->firstOrFail();
 
         if (!$editora) {
@@ -159,6 +159,6 @@ class EditoraController extends Controller
         $this->editora->destroy($id);
         return redirect()->route('editora.index')->with('success', 'Editora Excluida com sucesso');
 
-        
+
     }
 }

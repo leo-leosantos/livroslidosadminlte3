@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 
 
-@section('title', 'Editoras')
+@section('title', 'Authores')
 
 @section('content_header')
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Visualizar dados da Editora</h1>
+                    <h1 class="m-0">Visualizar dados do Author</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
-                    <a href="{{ route('editora.index') }}">
+                    <a href="{{ route('author.index') }}">
                         <button type="button" class="btn btn-outline-primary  float-right"><i
                                 class="fas fa-fast-backward"></i>
                             Voltar
@@ -26,7 +26,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Visualizar Editora</h3>
+            <h3 class="card-title">Visualizar Author</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -37,7 +37,7 @@
                         <div class="card card-outline card-info">
                             <div class="card-header">
                                 <h3 class="card-title">
-                                    <strong>Nome da Editora</strong> : {{ $editora->name_editora }}
+                                    <strong>Nome do Author</strong> : {{ $author->name_author }}
                                 </h3>
                             </div>
                             <!-- /.card-header -->
@@ -45,15 +45,17 @@
                                 <table class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <td> <strong>Nome editora</strong> : {{ $editora->name_editora }}</td>
-                                            <td> <strong>Data Cadastro</strong> : {{ $editora->created_at }}</td>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                            <td> <strong>Nome Author</strong> : {{ $author->name_author }}</td>
+                                            <td> <strong>Data Cadastro</strong> : {{ $author->created_at }}</td>
 
+                                        </tr>
+
+                                    </thead>
+
+                                </table>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('editora.destroy', ['editora' => $editora->id]) }}" method="post">
+                                <form action="{{ route('author.destroy', ['author' => $author->id]) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button
