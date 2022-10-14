@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateEditora extends FormRequest
+class UpdateAuthor extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,21 +24,14 @@ class UpdateEditora extends FormRequest
      */
     public function rules()
     {
-        $editora = $this->editora;
-
-
         return [
-            'name_editora' => [
+            'name_author' => [
                 'required',
                 'string',
                 'min:3',
                 'max:50',
-               // "unique:editoras,name_editora,{$editora->id},id"
-                Rule::unique('editoras')->ignore($this->editora)
+                Rule::unique('authors')->ignore($this->author)
             ],
-
         ];
     }
-
-
 }

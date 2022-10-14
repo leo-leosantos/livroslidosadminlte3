@@ -15,7 +15,7 @@ class CreateEditorasTable extends Migration
     {
         Schema::create('editoras', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name_editora')->unique();
+            $table->string('name_editora');
 
             $table->uuid('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users');

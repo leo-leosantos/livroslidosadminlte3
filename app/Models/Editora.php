@@ -11,8 +11,8 @@ class Editora extends Model
 
     protected $fillable = ['name_editora', 'user_id'];
 
-    public $incrementing = false;
-    protected $keyType = 'string';
+   // public $incrementing = false;
+   // protected $keyType = 'string';
 
     protected $casts = [
         'id' => 'string',

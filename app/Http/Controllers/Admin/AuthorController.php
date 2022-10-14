@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAuthor;
+use App\Http\Requests\UpdateAuthor;
 use Illuminate\Http\Request;
 use App\Models\Author;
 use Facade\FlareClient\View;
@@ -12,10 +13,12 @@ class AuthorController extends Controller
 {
 
     private $author;
-    public function __construct( Author $author)
+    public function __construct(Author $author)
     {
         $this->author = $author;
     }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +27,7 @@ class AuthorController extends Controller
     public function index()
     {
         $authores = $this->author->paginate();
+
 
 
         return view('admin.author.index', compact('authores'));
@@ -108,9 +112,32 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAuthor $request, $id)
     {
-        //
+
+        $author = $this->author->findOrfail($id)->firstOrFail();
+
+        if (!$author) {
+            return redirect()->back()->with('error', 'Não foi possível encontrar o author');
+        }
+
+        $name_author = $request->name_author;
+
+        $user_id  = auth()->user()->id;
+
+        $data =  [
+            'id' => $id,
+            'name_author' => $name_author,
+            'user_id' => $user_id
+        ];
+
+        $save = $author->fill($data)->save();
+
+        if (!$save) {
+            return redirect()->back()->with('error', 'Não foi possível atualizar o author');
+        } else {
+            return redirect()->route('author.index')->with('success', 'Author Atualizado com sucesso');
+        }
     }
 
     /**
@@ -121,6 +148,19 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $author = $this->author->findOrfail($id)->firstOrFail();
+
+        if (!$author) {
+            return redirect()->back()->with('error', 'Não foi possível encontrar o author');
+        }
+
+        $delete = $author->delete();
+
+        if (!$delete) {
+            return redirect()->back()->with('error', 'Não foi possível excluir o author');
+        } else {
+            return redirect()->route('author.index')->with('success', 'Author excluido com sucesso');
+        }
+
     }
 }

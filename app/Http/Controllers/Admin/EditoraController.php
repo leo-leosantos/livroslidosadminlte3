@@ -116,8 +116,10 @@ class EditoraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEditora $request, $id)
+    public function update(UpdateEditora $request, Editora $editora)
     {
+
+        $id = $editora->id;
 
         $editora = $this->editora->findOrfail($id)->firstOrFail();
 
@@ -135,9 +137,16 @@ class EditoraController extends Controller
             'user_id' => $user_id
         ];
 
-        $this->editora->update($data);
+        $save =  $this->editora->fill($data)->save();
+        dd($save);
+        $save = $editora->fill($data)->save();
 
-        return redirect()->route('editora.index')->with('success', 'Nova Editora Atualizada com sucesso');
+
+        if (!$save) {
+            return redirect()->back()->with('error', 'Não foi possível atualizar a Editora');
+        } else {
+            return redirect()->route('editora.index')->with('success', 'Editora Atualizada com sucesso');
+        }
 
     }
 
