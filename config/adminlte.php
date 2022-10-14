@@ -320,6 +320,17 @@ return [
                     'url'  => 'admin/author',
                     'icon' => 'fas fa-pen-alt',
                 ],
+                [
+                    'text' => 'Livros',
+                    'url'  => 'admin/book',
+                    'icon' => 'fas fa-book',
+                ],
+                [
+                    'text' => 'Frase Motivacional',
+                    'url'  => 'admin/frase',
+                    'icon' => 'fas fa-quote-left',
+                ],
+
             ],
         ],
 

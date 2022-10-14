@@ -6,12 +6,15 @@ use App\Models\{
     User,
     Author,
     Editora,
+    Book,
+    Phrase
 };
 use App\Observers\{
     UserObserver,
     AuthorObserver,
-    EditoraObserver
-
+    EditoraObserver,
+    BookObserver,
+    PhraseObserver
 };
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -41,5 +44,8 @@ class EventServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         Author::observe(AuthorObserver::class);
         Editora::observe(EditoraObserver::class);
+        Book::observe(BookObserver::class);
+        Phrase::observe(PhraseObserver::class);
+
     }
 }
