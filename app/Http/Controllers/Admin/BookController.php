@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBook;
 use Illuminate\Http\Request;
 use App\Models\{
     Book,
@@ -39,9 +40,10 @@ class BookController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(StoreBook $request)
     {
-        //
+        dd($request->all());
+
     }
 
 

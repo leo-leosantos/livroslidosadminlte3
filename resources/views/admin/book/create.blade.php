@@ -1,9 +1,6 @@
 @extends('adminlte::page')
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/summernote-bs4.min.css') }}">
-
-@endsection
+@section('plugins.Summernote', true)
 @section('title', 'Livros')
 
 @section('content_header')
@@ -35,18 +32,18 @@
 
             @include('admin.includes.alerts')
 
-            <form class="form" action="{{ route('editora.store') }}" method="POST">
+            <form class="form" action="{{ route('book.store') }}" method="POST">
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-md-5">
                         <label for="title_book">Titulo do Livro</label>
                         <input type="text" name="title" class="form-control" id="title_book"
-                            placeholder="Titulo do Livro" value="{{ '' ?? old('title') }}">
+                            placeholder="Titulo do Livro" value="{{old('title')  ?? '' }}">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="serie">Serie</label>
                         <input type="text" name="serie" class="form-control" id="serie"
-                            placeholder="Ex: As Crônicas de Gelo e Fogo" value="{{ '' ?? old('serie') }}">
+                            placeholder="Ex: As Crônicas de Gelo e Fogo" value="{{ old('serie')  ?? ''  }}">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="volume">Volume</label>
@@ -92,43 +89,43 @@
                                 <option value="{{ $editora->id }}">{{ $editora->name_editora }}</option>
                             @endforeach
                         </select>
+
                     </div>
+                </div>
 
-                    <section class="content">
-                        <!--section textarea  -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card card-outline card-info">
-                                    <div class="card-header">
-                                        <h3 class="card-title">
-                                            Sinopse
-                                        </h3>
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <div class="card-body">
-                                        <textarea id="summernote"  name="sinopse" value="{{ old('sinopse') }}">
-                                        </textarea>
-                                        @error('sinopse')
-                                            <div class="form-control is-invalid">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
+                <!--inicio do textarea  -->
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <div class="card card-outline card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    Sinopse
+                                </h3>
                             </div>
-                            <!-- /.col-->
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <textarea id="summernote" name="sinopse" value="{{ old('sinopse') }}">
+                                        </textarea>
+                                @error('sinopse')
+                                    <div class="form-control is-invalid">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
-                    </section>
-                    <!--fim do section textarea -->
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
-                </div>
-            </form>
-
+                <!--fim do  textarea -->
         </div>
-        <!-- /.card-body -->
+        <div class="card-footer text-center">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+        </form>
+
     </div>
+    <!-- /.card-body -->
+    </div>
+
 @stop
 
 @section('css')
@@ -137,25 +134,12 @@
 @stop
 
 @section('js')
-
-    <script src="{{ asset('js/summernote-pt-BR.min.js') }}"></script>
-
     <script>
         $(document).ready(function() {
             $('.select2').select2()
         });
-
-
-    </script>
-
-
-    <script>
-        $(function() {
-            // Summernote
-            $('#summernote').summernote({
-                lang: 'pt-BR',
-            });
+        $(document).ready(function() {
+            $('#summernote').summernote()
         });
     </script>
-
 @stop
