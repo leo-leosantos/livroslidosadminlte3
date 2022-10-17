@@ -20,7 +20,6 @@ class CreateBooksTable extends Migration
             $table->string('serie',100)->nullable();
             $table->string('volume',50)->nullable();
             $table->integer('page_number')->default(0);
-            $table->string('publishing_company',50);
             $table->date('date_start_reading');
             $table->date('date_end_reading')->nullable();
             $table->text('synopses');
