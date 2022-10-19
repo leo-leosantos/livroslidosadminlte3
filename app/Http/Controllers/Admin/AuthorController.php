@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateAuthor;
 use Illuminate\Http\Request;
 use App\Models\Author;
 use Facade\FlareClient\View;
-
 class AuthorController extends Controller
 {
 
@@ -68,7 +67,9 @@ class AuthorController extends Controller
 
         $this->author->create($data);
 
-        return redirect()->route('author.index')->with('success', 'Novo Author Cadastrado com sucesso');
+
+
+        return redirect()->route('author.index')->with('success', 'Authro Cadasrado cm Sucesso');
     }
 
     /**
@@ -132,6 +133,7 @@ class AuthorController extends Controller
         ];
 
         $save = $author->fill($data)->save();
+
 
         if (!$save) {
             return redirect()->back()->with('error', 'Não foi possível atualizar o author');

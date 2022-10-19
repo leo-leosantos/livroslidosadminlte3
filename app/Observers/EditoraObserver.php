@@ -9,4 +9,7 @@ class EditoraObserver
     {
         $editora->id = Str::uuid();
     }
+
+
+
 }

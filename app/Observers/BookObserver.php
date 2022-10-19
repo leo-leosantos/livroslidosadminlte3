@@ -12,4 +12,6 @@ class BookObserver
     {
         $book->id = Str::uuid();
     }
+
+
 }

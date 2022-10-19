@@ -64,29 +64,28 @@
                             value="{{ '' ?? old('date_start_reading') }}">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="date-start-reading">Data Fim da Leitura</label>
-                        <input type="date" name="date_start_reading" class="form-control" id="date-start-reading"
-                            value="{{ '' ?? old('date_start_reading') }}">
+                        <label for="date-end-reading">Data Fim da Leitura</label>
+                        <input type="date" name="date_end_reading" class="form-control" id="date-end-reading"
+                            value="{{ '' ?? old('date_end_reading') }}">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="author_id">Selecione o Nome do Author</label>
-                        <select class="form-control select2" style="width: 100%;">
+                        <label for="author-id">Selecione o Nome do Author</label>
+                        <select class="form-control select2" name="author_id" id="author-id"  style="width: 100%;">
                             <option>Selecione o Nome do Author</option>
 
                             @foreach ($authores as $author)
-                                <option value="{{ $author->id }}">{{ $author->name_author }}</option>
+                                <option  value="{{ $author->id }}">{{ $author->name_author }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="author_id">Selecione a Editora</label>
-                        <select class="form-control select2" style="width: 100%;">
+                        <label for="editora-id">Selecione a Editora</label>
+                        <select name="editora_id" id="editora-id"  class="form-control select2" style="width: 100%;">
                             <option>Selecione o Nome da Editora</option>
-
                             @foreach ($editoras as $editora)
-                                <option value="{{ $editora->id }}">{{ $editora->name_editora }}</option>
+                                <option   value="{{ $editora->id }}">{{ $editora->name_editora }}</option>
                             @endforeach
                         </select>
 
@@ -94,27 +93,27 @@
                 </div>
 
                 <!--inicio do textarea  -->
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <div class="card card-outline card-info">
-                            <div class="card-header">
-                                <h3 class="card-title">
-                                    Sinopse
-                                </h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <textarea id="summernote" name="sinopse" value="{{ old('sinopse') }}">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <div class="card card-outline card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        Sinopse
+                                    </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <textarea id="summernote" name="synopses" value="{{ old('synopses') }}">
                                         </textarea>
-                                @error('sinopse')
-                                    <div class="form-control is-invalid">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                    @error('synopses')
+                                        <div class="form-control is-invalid">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 <!--fim do  textarea -->
         </div>
         <div class="card-footer text-center">

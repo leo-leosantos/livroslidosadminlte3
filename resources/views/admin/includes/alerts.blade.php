@@ -15,6 +15,7 @@
 @endif  --}}
 
 @if($message = Session::get('success'))
+
 <input type="hidden" id="modalnv" data-toggle="modal" data-target="#flipFlop">
 <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

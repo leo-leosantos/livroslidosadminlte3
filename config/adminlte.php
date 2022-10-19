@@ -417,13 +417,18 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
                 ],
+            ],
+            [
+                'type' => 'css',
+                'asset' => true,
+                'location' => 'vendor/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css',
             ],
         ],
         'Pace' => [
