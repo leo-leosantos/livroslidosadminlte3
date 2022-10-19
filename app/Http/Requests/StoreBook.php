@@ -28,7 +28,7 @@ class StoreBook extends FormRequest
             'title' => 'required|string|min:3|max:50',
             'page_number'=>'required',
             'date_start_reading' => 'required',
-            'synopses' => 'required|string|min:3|max:350',
+            'synopses' => 'required|string|min:3|max:9999',
             'author_id' => 'required',
             'editora_id' => 'required',
         ];

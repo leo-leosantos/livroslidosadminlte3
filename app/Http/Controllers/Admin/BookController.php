@@ -23,9 +23,9 @@ class BookController extends Controller
 
     public function index()
     {
-       // $books = $this->book->with('author')->paginate();
+        $books = $this->book->with('editora')->paginate();
 
-        return view('admin.book.index');
+        return view('admin.book.index', compact('books'));
     }
 
 
@@ -79,7 +79,15 @@ class BookController extends Controller
 
     public function show($id)
     {
-        //
+        $book = $this->book->findOrfail($id)->firstOrFail();
+
+
+            if(!$book){
+                return redirect()->back()->with('error', 'Não foi possível encontrar o Livro');
+
+            }
+            return view('admin.book.show', compact('book'));
+
     }
 
 
@@ -97,6 +105,6 @@ class BookController extends Controller
 
     public function destroy($id)
     {
-        //
+        dd($id);
     }
 }

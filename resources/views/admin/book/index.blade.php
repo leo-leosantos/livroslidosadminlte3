@@ -30,30 +30,46 @@
                 <thead>
                     <tr>
                         <th>Nome do Livro</th>
-                        <th>Nome Author</th>
-                        <th>Data Criação</th>
+                        <th>Editora</th>
+                        <th>Author</th>
+                        <th>Início da Leitura</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-
-                    {{--  @forelse($books as $book )
-                    <tr>
-                        <td></td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="1000">
-                            Sem nenhum curso
-                        </td>
-                    </tr>
-                @endforelse  --}}
+                    @foreach ($books as $book)
+                        <tr>
+                            <td>{{ $book->title }}</td>
+                            <td>{{ $book->editora->name_editora }}</td>
+                            <td>{{ $book->author->name_author }}</td>
+                            <td>{{ $book->date_start_reading }}</td>
+                            <td>
+                                <div class="btn-group mr-1">
+                                    <a href="{{ route('book.show', $book->id) }}" class="btn btn-info mr-1">
+                                        <i class="far fa-eye"></i> Visualizar
+                                    </a>
+                                    <br>
+                                    <a href="{{ route('book.edit', $book->id) }}" class="btn btn-warning mr-1">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </a>
+                                    <br>
+                                    <form action="{{ route('book.destroy', ['book' => $book->id]) }}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger mr-1"><i class="fas fa-trash"></i>
+                                            Excluir</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Nome Editora</th>
-                        <th>Data Criação</th>
-                        <th>Cadastrado</th>
+                        <th>Nome do Livro</th>
+                        <th>Editora</th>
+                        <th>Author</th>
+                        <th>Início da Leitura</th>
                         <th>Ações</th>
                     </tr>
                 </tfoot>
@@ -69,23 +85,23 @@
 @section('js')
 
 
-<script>
-    $(document).ready(function() {
-        $('#editora').DataTable({
-            "language": {
-                "search": "Pesquisar",
-                "lengthMenu": "Mostrar _MENU_ registros por página",
-                "info": "Mostrando página _PAGE_ de _PAGES_",
-                "paginate": {
+    <script>
+        $(document).ready(function() {
+            $('#editora').DataTable({
+                "language": {
+                    "search": "Pesquisar",
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "paginate": {
                         "previous": "Anterior",
                         "next": "Próximo",
                         "first": "Primeiro",
                         "last": "Último"
+                    }
                 }
-            }
+            });
         });
-    });
-</script>
+    </script>
 
 
 

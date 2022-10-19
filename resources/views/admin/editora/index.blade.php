@@ -42,15 +42,22 @@
                             <td>{{ $editora->user->name }}</td>
                             <td>{{ $editora->created_at }}</td>
                             <td>
-                                <a href="{{ route('editora.show', $editora->id) }}" class="btn btn-info">
-
-                                    <i class="far fa-eye"></i> Visualizar
-                                </a>
-                                <a href="{{ route('editora.edit', $editora->id) }}" class="btn btn-warning">
-
-                                    <i class="fas fa-edit"></i> Editar
-                                </a>
-
+                                <div class="btn-group">
+                                    <a href="{{ route('editora.show', $editora->id) }}" class="btn btn-info mr-1">
+                                        <i class="far fa-eye"></i> Visualizar
+                                    </a>
+                                    <br>
+                                    <a href="{{ route('editora.edit', $editora->id) }}" class="btn btn-warning mr-1">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </a>
+                                    <br>
+                                    <form action="{{ route('editora.destroy', ['editora' => $editora->id]) }}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i>
+                                            Excluir</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
 

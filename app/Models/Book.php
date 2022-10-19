@@ -38,4 +38,9 @@ class Book extends Model
     {
         return $this->belongsTo(Editora::class);
     }
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
+    }
 }

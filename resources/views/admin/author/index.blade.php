@@ -1,14 +1,9 @@
 @extends('adminlte::page')
-
-
 @section('title', 'Authores')
-
 @section('content_header')
-
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-
                 <div class="col-sm-12">
                     <a href="{{ route('author.create') }}">
                         <button type="button" class="btn btn-outline-success  float-right"><i class="far fa-plus-square"></i>
@@ -19,8 +14,6 @@
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
-
-
 @stop
 @include('admin.includes.alerts')
 @section('content')
@@ -47,15 +40,22 @@
                             <td>{{ $author->created_at }}</td>
 
                             <td>
-                                <a href="{{ route('author.show', $author->id) }}" class="btn btn-info">
-
-                                    <i class="far fa-eye"></i> Visualizar
-                                </a>
-                                <a href="{{ route('author.edit', $author->id) }}" class="btn btn-warning">
-
-                                    <i class="fas fa-edit"></i> Editar
-                                </a>
-
+                                <div class="btn-group">
+                                    <a href="{{ route('author.show', $author->id) }}" class="btn btn-info mr-1">
+                                        <i class="far fa-eye"></i> Visualizar
+                                    </a>
+                                    <br>
+                                    <a href="{{ route('author.edit', $author->id) }}" class="btn btn-warning mr-1">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </a>
+                                    <br>
+                                    <form action="{{ route('author.destroy', ['author' => $author->id]) }}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i>
+                                            Excluir</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @empty
