@@ -82,6 +82,7 @@ class BookController extends Controller
         $book = $this->book->findOrfail($id)->firstOrFail();
 
 
+
             if(!$book){
                 return redirect()->back()->with('error', 'Não foi possível encontrar o Livro');
 
@@ -93,7 +94,24 @@ class BookController extends Controller
 
     public function edit($id)
     {
-        //
+
+        $authores =  Author::get();
+        $editoras =  Editora::get();
+
+
+        // foreach ($authores as $key => $value){
+        //     dd($value );
+        // }
+
+
+
+        $book = $this->book->findOrfail($id)->firstOrFail();
+        if(!$book){
+            return redirect()->back()->with('error', 'Não foi possível encontrar o Livro');
+
+        }
+        return view('admin.book.edit', compact('book','authores', 'editoras'));
+
     }
 
 

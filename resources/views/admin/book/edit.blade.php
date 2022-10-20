@@ -25,7 +25,7 @@
 @section('content')
     <div class="card card-primary">
         <div class="card-header ">
-            <h3 class="card-title">Cadastar Novo Livro</h3>
+            <h3 class="card-title">Editar o Livro: <b>{{ $book->title }}</b></h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -38,17 +38,17 @@
                     <div class="form-group col-md-5">
                         <label for="title_book">Titulo do Livro</label>
                         <input type="text" name="title" class="form-control" id="title_book"
-                            placeholder="Titulo do Livro" value="{{old('title')  ?? '' }}">
+                            placeholder="Titulo do Livro" value="{{ old('title') ?? $book->title }}">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="serie">Serie</label>
                         <input type="text" name="serie" class="form-control" id="serie"
-                            placeholder="Ex: As Crônicas de Gelo e Fogo" value="{{ old('serie')  ?? ''  }}">
+                            placeholder="Ex: As Crônicas de Gelo e Fogo" value="{{ old('serie') ?? $book->serie }}">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="volume">Volume</label>
                         <input type="text" name="volume" class="form-control" id="volume" placeholder="Ex: Volume 1"
-                            value="{{ old('volume') ?? '' }}">
+                            value="{{ old('volume') ?? $book->volume }}">
                     </div>
                 </div>
 
@@ -56,64 +56,68 @@
                     <div class="form-group col-md-4">
                         <label for="page-number">Número de Páginas</label>
                         <input type="number" min="0" name="page_number" class="form-control" id="page-number"
-                            placeholder="Número de Páginas" value="{{ old('page_number') ?? '' }}">
+                            placeholder="Número de Páginas" value="{{ old('page_number') ?? $book->page_number }}">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="date-start-reading">Data Início da Leitura</label>
                         <input type="date" name="date_start_reading" class="form-control" id="date-start-reading"
-                            value="{{  old('date_start_reading') ?? '' }}">
+                            value="{{ old('date_start_reading') ?? $book->date_start_reading }}">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="date-end-reading">Data Fim da Leitura</label>
                         <input type="date" name="date_end_reading" class="form-control" id="date-end-reading"
-                            value="{{  old('date_end_reading') ?? '' }}">
+                            value="{{ old('date_end_reading') ?? $book->date_end_reading }}">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="author-id">Selecione o Nome do Author</label>
-                        <select class="form-control select2" name="author_id" id="author-id"  style="width: 100%;">
+                        <select class="form-control select2" name="author_id" id="author-id" style="width: 100%;">
                             <option>Selecione o Nome do Author</option>
 
-                            @foreach ($authores as $author)
-                                <option  value="{{ $author->id }}">{{ $author->name_author }}</option>
+                            @foreach ($authores as $key => $value)
+
+                                <option value="{{ $value->id }}" {{ $value->id == $value->id ? 'selected' : '' }}>
+                                    {{ $value->name_author }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="editora-id">Selecione a Editora</label>
-                        <select name="editora_id" id="editora-id"  class="form-control select2" style="width: 100%;">
+                        <select name="editora_id" id="editora-id" class="form-control select2" style="width: 100%;">
+
                             <option>Selecione o Nome da Editora</option>
-                            @foreach ($editoras as $editora)
-                                <option   value="{{ $editora->id }}">{{ $editora->name_editora }}</option>
+                            @foreach ($editoras as $key => $value)
+                                <option value="{{ $value->id }}" {{ $value->id == $value->id ? 'selected' : '' }}>
+                                    {{ $value->name_editora }}</option>
                             @endforeach
                         </select>
-
                     </div>
                 </div>
-
                 <!--inicio do textarea  -->
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <div class="card card-outline card-info">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        Sinopse
-                                    </h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    <textarea id="summernote" name="synopses" value="{{ old('synopses') ?? '' }}">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <div class="card card-outline card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    Sinopse
+                                </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <textarea id="summernote" name="synopses" value="{{ old('synopses') ?? $book->synopses }}">
+                                        {{ $book->synopses }}
                                         </textarea>
-                                    @error('synopses')
-                                        <div class="form-control is-invalid">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
+                                @error('synopses')
+                                    <div class="form-control is-invalid">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
+                </div>
                 <!--fim do  textarea -->
         </div>
         <div class="card-footer text-center">
