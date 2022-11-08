@@ -121,7 +121,7 @@
                 <!--fim do  textarea -->
         </div>
         <div class="card-footer text-center">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn btn-outline-warning">EDITAR</button>
         </div>
         </form>
 

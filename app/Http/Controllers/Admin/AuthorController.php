@@ -80,7 +80,7 @@ class AuthorController extends Controller
      */
     public function show($id)
     {
-        $author = $this->author->findOrfail($id)->firstOrFail();
+        $author = $this->author->find($id);
 
         if (!$author) {
             return redirect()->back()->with('error', 'Não foi possível encontrar o author');
@@ -98,7 +98,7 @@ class AuthorController extends Controller
      */
     public function edit($id)
     {
-        $author = $this->author->findOrfail($id)->firstOrFail();
+        $author = $this->author->find($id);
 
         if (!$author) {
             return redirect()->back()->with('error', 'Não foi possível encontrar o author');
@@ -116,7 +116,7 @@ class AuthorController extends Controller
     public function update(UpdateAuthor $request, $id)
     {
 
-        $author = $this->author->findOrfail($id)->firstOrFail();
+        $author = $this->author->find($id);
 
         if (!$author) {
             return redirect()->back()->with('error', 'Não foi possível encontrar o author');
@@ -150,7 +150,7 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-        $author = $this->author->findOrfail($id)->firstOrFail();
+        $author = $this->author->find($id);
 
         if (!$author) {
             return redirect()->back()->with('error', 'Não foi possível encontrar o author');

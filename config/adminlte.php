@@ -327,7 +327,7 @@ return [
                 ],
                 [
                     'text' => 'Frase Motivacional',
-                    'url'  => 'admin/frase',
+                    'url'  => 'admin/phrase',
                     'icon' => 'fas fa-quote-left',
                 ],
 

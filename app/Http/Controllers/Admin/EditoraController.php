@@ -83,7 +83,7 @@ class EditoraController extends Controller
      */
     public function show($id)
     {
-        $editora = $this->editora->findOrfail($id)->firstOrFail();
+        $editora = $this->editora->find($id);
 
         if (!$editora) {
             return redirect()->back()->with('error', 'Não foi possível encontrar a editora');
@@ -101,7 +101,7 @@ class EditoraController extends Controller
      */
     public function edit($id)
     {
-        $editora = $this->editora->findOrfail($id)->firstOrFail();
+        $editora = $this->editora->find($id);
 
         if (!$editora) {
             return redirect()->back()->with('error', 'Não foi possível encontrar a editora');
@@ -121,7 +121,7 @@ class EditoraController extends Controller
 
         $id = $editora->id;
 
-        $editora = $this->editora->findOrfail($id)->firstOrFail();
+        $editora = $this->editora->find($id);
 
         if (!$editora) {
             return redirect()->back()->with('error', 'Não foi possível encontrar a editora');
@@ -138,8 +138,7 @@ class EditoraController extends Controller
         ];
 
         $save =  $this->editora->fill($data)->save();
-        dd($save);
-        $save = $editora->fill($data)->save();
+       // $save = $editora->fill($data)->save();
 
 
         if (!$save) {
@@ -159,7 +158,7 @@ class EditoraController extends Controller
     public function destroy($id)
     {
 
-        $editora = $this->editora->findOrfail($id)->firstOrFail();
+        $editora = $this->editora->find($id);
 
         if (!$editora) {
             return redirect()->back()->with('error', 'Não foi possível encontrar a editora');

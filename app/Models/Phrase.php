@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Phrase extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['phrase', 'author_phrase'];
+
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    protected $casts = [
+        'id' => 'string',
+    ];
 }

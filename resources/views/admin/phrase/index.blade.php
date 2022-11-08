@@ -1,13 +1,13 @@
 @extends('adminlte::page')
-@section('title', 'Authores')
+@section('title', 'Frases Motivacional')
 @section('content_header')
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <a href="{{ route('author.create') }}">
+                    <a href="{{ route('phrase.create') }}">
                         <button type="button" class="btn btn-outline-success  float-right"><i class="far fa-plus-square"></i>
-                            Cadastrar Novo Author
+                            Cadastrar Nova Frase Motivacional
                         </button>
                     </a>
                 </div><!-- /.col -->
@@ -19,37 +19,37 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Lista de Authores Cadastradas</h3>
+            <h3 class="card-title">Lista de Frases Cadastradas</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="author" class="table table-bordered table-striped">
+            <table id="phrase" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Nome Author</th>
-                        <th>Cadastrado por:</th>
+                         <th>Frase</th>
+                         <th>Autor da Frase</th>
                         <th>Data Criação</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($authores as $author)
+                    @forelse($phrases as $phrase)
                         <tr>
-                            <td>{{ $author->name_author }}</td>
-                            <td>{{ $author->user->name }}</td>
-                            <td>{{ $author->created_at }}</td>
+                            <td>{{ $phrase->phrase }}</td>
+                            <td>{{ $phrase->author_phrase }}</td>
+                            <td>{{ $phrase->created_at }}</td>
 
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('author.show', $author->id) }}" class="btn btn-info mr-1">
+                                    <a href="{{ route('phrase.show', $phrase->id) }}" class="btn btn-info mr-1">
                                         <i class="far fa-eye"></i> Visualizar
                                     </a>
                                     <br>
-                                    <a href="{{ route('author.edit', $author->id) }}" class="btn btn-warning mr-1">
+                                    <a href="{{ route('phrase.edit', $phrase->id) }}" class="btn btn-warning mr-1">
                                         <i class="fas fa-edit"></i> Editar
                                     </a>
                                     <br>
-                                    <form action="{{ route('author.destroy', ['author' => $author->id]) }}" method="post">
+                                    <form action="{{ route('phrase.destroy', ['phrase' => $phrase->id]) }}" method="post">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i>
@@ -60,14 +60,14 @@
                         </tr>
                     @empty
                         <th>
-                            <td> Nenhuma Author cadastrado</td>
+                            <td> Nenhuma Frase cadastrada</td>
                         </th>
                     @endforelse
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Nome Author</th>
-                        <th>Cadastrado por:</th>
+                        <th>Frase</th>
+                        <th>Autor da Frase</th>
                         <th>Data Criação</th>
                         <th>Ações</th>
                     </tr>
@@ -86,7 +86,7 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#author').DataTable({
+            $('#phrase').DataTable({
                 "language": {
                     "search": "Pesquisar",
                     "lengthMenu": "Mostrar _MENU_ registros por página",

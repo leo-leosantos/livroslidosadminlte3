@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
     EditoraController,
     AuthorController,
-    BookController
+    BookController,
+    PhraseController
 };
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,8 @@ Route::prefix('admin')
          // Books
 
          Route::resource('/book', BookController::class);
+         Route::resource('/phrase', PhraseController::class);
+
     });
 
 Route::get('/dashboard', function () {
