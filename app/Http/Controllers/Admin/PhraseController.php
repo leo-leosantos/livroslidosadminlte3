@@ -91,6 +91,7 @@ class PhraseController extends Controller
         if (!$phrase) {
             return redirect()->back()->with('error', 'Não foi possível encontrar a editora');
         }
+       
         return view('admin.phrase.edit', compact('phrase'));
     }
 
@@ -104,8 +105,11 @@ class PhraseController extends Controller
     public function update(StorePhraseMotivacional $request, $id)
     {
 
-        $data =  $request->only(['phrase', 'author_phrase']);
+       
 
+        $data =  $request->only(['phrase', 'author_phrase', 'active']);
+
+       
         $phrase = $this->phrase->find($id);
 
 
@@ -115,21 +119,20 @@ class PhraseController extends Controller
 
         $phraseMotivacional = $request->phrase;
         $author_phrase = $request->author_phrase;
-
+        $active = isset($request->active)? 1 : 0;
+        
+       
+       
         $data =  [
             'id'=> $id,
             'phrase' => $phraseMotivacional,
-            'author_phrase' => $author_phrase
+            'author_phrase' => $author_phrase,
+            'active' => $active
         ];
-
-
-
-        $save =  $this->phrase->fill($data)->save();
-       // $save = $phrase->fill($data)->save();
-
-
-
-        if (!$save) {
+      
+        $phrase->fill($data);
+        $phrase->save();
+        if (!$phrase) {
             return redirect()->back()->with('error', 'Não foi possível atualizar a Frase');
         } else {
             return redirect()->route('phrase.index')->with('success', 'Frase Atualizada com sucesso');

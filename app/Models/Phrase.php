@@ -9,7 +9,7 @@ class Phrase extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['phrase', 'author_phrase'];
+    protected $fillable = ['phrase', 'author_phrase','active'];
 
     public $incrementing = false;
     protected $keyType = 'string';
@@ -17,4 +17,6 @@ class Phrase extends Model
     protected $casts = [
         'id' => 'string',
     ];
+
+ 
 }

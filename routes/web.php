@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\{
     EditoraController,
     AuthorController,
     BookController,
+    HomeController,
     PhraseController
 };
 /*
@@ -18,31 +19,50 @@ use App\Http\Controllers\Admin\{
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['middleware'=> ['auth'] , 'prefix'=>'admin'] , function() {
+
+
+ // Editora
+         Route::resource('/editora', EditoraController::class);
+//         // Author
+
+         Route::resource('/author', AuthorController::class);
+
+
+                  // Books
+
+          Route::resource('/book', BookController::class);
+          Route::resource('/phrase', PhraseController::class);
+          Route::resource('/home',  HomeController::class);
+
+
 });
 
 
-Route::prefix('admin')
-    ->middleware(['auth'])
-    ->group(function () {
 
-        // Editora
-        Route::resource('/editora', EditoraController::class);
+// Route::prefix('admin')
+//     ->middleware(['auth'])
+//     ->group(function () {
 
-        // Author
+//         // Editora
+//         Route::resource('/editora', EditoraController::class);
 
-        Route::resource('/author', AuthorController::class);
+//         // Author
 
-         // Books
+//         Route::resource('/author', AuthorController::class);
 
-         Route::resource('/book', BookController::class);
-         Route::resource('/phrase', PhraseController::class);
+//          // Books
 
-    });
+//          Route::resource('/book', BookController::class);
+//          Route::resource('/phrase', PhraseController::class);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+//          Route::get('/',  HomeController::class)->name('admin.home');
+// });
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->middleware(['auth'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';

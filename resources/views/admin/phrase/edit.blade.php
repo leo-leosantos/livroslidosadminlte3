@@ -38,6 +38,17 @@
                     <label for="author_frase_motivacioonal">Author da Frase</label>
                     <input type="text" name="author_phrase" class="form-control" id="author_frase_motivacioonal" placeholder="Author da Frase" value="{{ old('author_phrase') ?? $phrase->author_phrase}}">
                 </div>
+                    <div class="form-group">
+                        <label>Ativo</label>
+                                   <input type="checkbox"  data-bootstrap-switch
+                                   name="active" {{ (old('active') == 'on' || old('active') == true ? 'checked' : ($phrase->active == true ? 'checked' : '')) }}>
+
+                        @error('active')
+                            <div class="form-control is-invalid">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-outline-warning">Editar</button>
                 </div>
